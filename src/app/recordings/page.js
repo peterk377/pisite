@@ -1,8 +1,8 @@
-export default function Contact() {
+export default function Recordings() {
     return (
       <main>
         <div class = 'nav'>
-          <h1>Contact</h1>
+          <h1>Recordings</h1>
           <ul>
             <li><a href="../">Home</a></li>
             <li><a href="../alerts">Alerts</a></li>
@@ -11,10 +11,8 @@ export default function Contact() {
             <li><a href="../account">Account</a></li>
           </ul>
         </div>
-
-        <h1>Hi! feel free to contact us by pressing <a href="mailto:pialerttest@gmail.com">here</a></h1>
-        <h1>Or just shoot us a message at pialerttest@gmail.com</h1>
   
       </main>
     );
   }
+  
