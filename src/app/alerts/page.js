@@ -2,14 +2,17 @@ export default function Alerts() {
     return (
       <main>
         <div class = 'nav'>
-          <h1>PiAlert</h1>
+          <h1>Alerts</h1>
           <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Alerts</a></li>
-            <li><a href="">Recordings</a></li>
-            <li><a href="">Account</a></li>
+            <li><a href="../">Home</a></li>
+            <li><a href="../alerts">Alerts</a></li>
+            <li><a href="../recordings">Recordings</a></li>
+            <li><a href="../contact">Contact</a></li>
+            <li><a href="../account">Account</a></li>
           </ul>
         </div>
+
+        
   
       </main>
     );
