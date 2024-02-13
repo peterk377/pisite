@@ -3,7 +3,7 @@ export async function GET(req,res) {
     console.log("in api page")
 
     const {MongoClient} = require('mongodb');
-    const url = 'mongodb+srv://pete:rkJra6htx7zbBKkH@cluster0.udwnlkv.mongodb.net/?retryWrites=true&w=majority';
+    const url = process.env.DATABASE_URL;
     const client = new MongoClient(url);
 
     const dbName = 'pialert';//name of db
