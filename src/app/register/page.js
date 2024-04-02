@@ -53,7 +53,7 @@ export default function Page() {
 
     let username = data.get('username')
     let email = data.get('email')
-	let password = data.get('password')
+	  let password = data.get('password')
     let tel = data.get('tel')
 	
     console.log("Sent username:" + username)
