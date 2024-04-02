@@ -27,23 +27,14 @@ export default function Page() {
   calling the fetch to get things from the database.
   */ 
   async function runDBCallAsync(url) {
-
-
     const res = await fetch(url);
     const data = await res.json();
-
- 
-    if(data.data== "valid"){
-      console.log("login is valid!")
-      // Redirects to a different page
-      window.location.href = "/alerts";
-
-      
+    if(data.data== "true"){
+    console.log("registered")
     } else {
-
-      console.log("not valid  ")
+    console.log("not registered ")
     }
-  }
+    }
 
 
   /*
@@ -60,20 +51,25 @@ export default function Page() {
   
 		const data = new FormData(event.currentTarget);
 
+    let username = data.get('username')
+    let email = data.get('email')
+	let password = data.get('password')
+    let tel = data.get('tel')
+	
+    console.log("Sent username:" + username)
+    console.log("Sent email:" + email)
+    console.log("Sent pass:" + password)
+    console.log("Sent tel:" + tel)
+    
 
-    let username = data.get('username');
-		let password = data.get('password');
 
-    console.log("Sent username:" + username);
-    console.log("Sent password:" + password);
-
-
-    runDBCallAsync(`api/login?username=${username}&password=${password}`);
+    runDBCallAsync(`http://localhost:3000/api/register?username=${username}&email=${email}&password=${password}&tel=${tel}`)
 
 
 
 
   }; // end handler
+
 
 
 
@@ -107,17 +103,26 @@ export default function Page() {
           
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Register
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
             fullWidth
-            id="username"
-            label="Username"
             name="username"
+            label="Username"
+            type="username"
+            id="username"
             autoComplete="username"
+          /><TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="Email Address"
             autoFocus
           />
           <TextField
@@ -128,36 +133,30 @@ export default function Page() {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            autoComplete="Insert your password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="tel"
+            label="Whatsapp number"
+            type="tel"
+            id="tel"
+            autoComplete="+353 12 345 6789"
           />
+          
+          
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Register
           </Button>
 
 
-
-
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="../register" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
 

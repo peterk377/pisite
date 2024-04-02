@@ -16,7 +16,7 @@ export default function Page() {
 
   return (
     <div>
-    <div class = 'nav'>
+    <div className = 'nav'>
           <h1>Alerts</h1>
           <ul>
             <li><a href="../">Home</a></li>
