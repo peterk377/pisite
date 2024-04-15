@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 export async function GET(req, res) {
   console.log("in api page");
 
