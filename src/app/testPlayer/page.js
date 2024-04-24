@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+import "../style/loading.css";
 
 export default function Page() {
   const [data, setData] = useState(null);
@@ -16,7 +17,19 @@ export default function Page() {
       });
   }, []);
 
-  if (!data) return <p>Loading</p>;
+  if (!data)
+    return (
+      <>
+        <div class="typing-indicator">
+          <div class="typing-circle"></div>
+          <div class="typing-circle"></div>
+          <div class="typing-circle"></div>
+          <div class="typing-shadow"></div>
+          <div class="typing-shadow"></div>
+          <div class="typing-shadow"></div>
+        </div>
+      </>
+    );
 
   return (
     <div>
@@ -49,21 +62,6 @@ function decodeBase64(base64String) {
     const decodedData = atob(base64String);
 
     console.log("Decoded data:", decodedData);
-
-    // Convert the decoded data to a Uint8Array
-    // const byteArray = new Uint8Array(decodedData.length);
-    // for (let i = 0; i < decodedData.length; i++) {
-    //   byteArray[i] = decodedData.charCodeAt(i);
-    // }
-
-    // // Create a Blob from the Uint8Array
-    // const blob = new Blob([byteArray], { type: "video/mp4" });
-
-    // console.log("Blob:", blob);
-    // console.log(URL.createObjectURL(blob));
-
-    // // Create a URL for the Blob and return it
-    // return URL.createObjectURL(blob);
     return decodedData;
   } catch (error) {
     console.error("An error occurred:", error);
