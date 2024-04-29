@@ -1,12 +1,16 @@
 import ResponsiveAppBar from "../../../components/nav";
 import Contact from "../../../components/contact";
+import Footer from "../../../components/footer";
+
+import "../../../styles/page.css";
 
 export default function ContactPage() {
     return (
-      <div>
+      <body>
       <ResponsiveAppBar></ResponsiveAppBar>
       <Contact></Contact>
-      </div>
+      <Footer></Footer>
+      </body>
     );
   }
 

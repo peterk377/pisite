@@ -4,7 +4,8 @@ import "../styles/nav.css";
 
 function ResponsiveAppBar() {
   return (
-    <div className="navbar">
+    <header><div className="navbar">
+        
       <nav>
         <div className="wrapper">
           <div className="logo"><a href="./">PiAlert</a></div>
@@ -29,7 +30,7 @@ function ResponsiveAppBar() {
           <label htmlFor="menu-btn" className="btn menu-btn"><i className="fas fa-bars"></i></label>
         </div>
       </nav>
-    </div>
+    </div></header>
   );
 }
 
