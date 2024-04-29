@@ -8,8 +8,8 @@ export async function GET(req, res) {
     // get the values
     // that were sent across to us.
     const { searchParams } = new URL(req.url)
-    const username = searchParams.get('username')
-    const pass = searchParams.get('password')
+    const username = btoa(searchParams.get('username'))
+    const pass = btoa(searchParams.get('password'))
   
     console.log(username);
     console.log(pass);
