@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 import "../style/loading.css";
-
-// import "../style/deleteBtn.css";
 
 export default function Page() {
   const [data, setData] = useState(null);
@@ -35,37 +35,35 @@ export default function Page() {
     document.body.removeChild(link);
   };
   const handleDelete = () => {
-    // Assuming you have an API endpoint to delete the alert by ID
-    // fetch("api/deleteAlertByID?id=" + id)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     alert("Deleted");
-    //     window.location.href = "/userLanding"; // Redirect to specific page
-    //   })
-    //   .catch((error) => console.error("Error deleting:", error));
     console.log("DELETED");
   };
 
   if (!data)
     return (
-      <>
-        <div className="typing-indicator">
-          <div class="typing-circle"></div>
-          <div class="typing-circle"></div>
-          <div class="typing-circle"></div>
-          <div class="typing-shadow"></div>
-          <div class="typing-shadow"></div>
-          <div class="typing-shadow"></div>
-        </div>
-      </>
+      <div className="typing-indicator">
+        <div class="typing-circle"></div>
+        <div class="typing-circle"></div>
+        <div class="typing-circle"></div>
+        <div class="typing-shadow"></div>
+        <div class="typing-shadow"></div>
+        <div class="typing-shadow"></div>
+      </div>
     );
 
   return (
-    <body>
+    <div
+      style={{
+        background: "black",
+        // height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <div>
-        <h1>Video Player</h1>
+        <h1 style={{ color: "white" }}>Video Player</h1>
         {data.map((alert, index) => (
-          <div key={index}>
+          <div key={index} style={{ color: "white" }}>
             <h2>AlertID: {alert.alertID}</h2>
             <h4>Date: {alert.date}</h4>
             <ReactPlayer
@@ -77,24 +75,31 @@ export default function Page() {
             <h3>Video Details:</h3>
             <p>Image: {alert.image}</p>
             <div>
-              {/* Download Button */}
-              <button
-                onClick={() =>
-                  downloadVideo(
-                    `data:video/mp4;base64,${alert.video}`,
-                    `alert_${alert.alertID} ${alert.date}.mp4`
-                  )
-                }
-              >
-                Download
-              </button>
-              {/* DELETE BTN */}
-              <button onClick={handleDelete}>Delete</button>
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="contained"
+                  onClick={() =>
+                    downloadVideo(
+                      `data:video/mp4;base64,${alert.video}`,
+                      `alert_${alert.alertID} ${alert.date}.mp4`
+                    )
+                  }
+                >
+                  Download
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </Button>
+              </Stack>
             </div>
           </div>
         ))}
       </div>
-    </body>
+    </div>
   );
 }
 
