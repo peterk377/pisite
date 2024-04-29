@@ -65,7 +65,7 @@ export default function Page() {
 
     runDBCallAsync(`http://localhost:3000/api/register?username=${username}&email=${email}&password=${password}&tel=${tel}`)
 
-
+    window.location.href = "/userLanding";
 
 
   }; // end handler

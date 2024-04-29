@@ -36,7 +36,7 @@ export default function Page() {
     if(data.data== "valid"){
       console.log("login is valid!")
       // Redirects to a different page
-      window.location.href = "/alerts";
+      window.location.href = "/userLanding";
 
       
     } else {
