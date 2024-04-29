@@ -81,6 +81,7 @@ export default function Page() {
     >
       <div>
         <h1>{ArrowBackIosIcon}</h1>
+
         <h1 style={{ color: "white" }}>Video Player</h1>
         {data.map((alert, index) => (
           <div key={index} style={{ color: "white" }}>
@@ -139,6 +140,11 @@ export default function Page() {
                     </DialogActions>
                   </Dialog>
                 </React.Fragment>
+                  onClick={handleDelete}
+                >
+                  Delete
+                </Button>
+
               </Stack>
             </div>
           </div>
