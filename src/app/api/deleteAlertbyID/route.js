@@ -18,7 +18,7 @@ export async function GET(req, res) {
   const db = client.db(dbName);
   const collection = db.collection("alerts"); //add collection name here
 
-  const findResult = await collection.deleteOne({ _id: newid }).toArray();
+  const findResult = await collection.deleteOne({ alertID: newid }).toArray();
 
   // console.log('found documents =>', findResult);
 
