@@ -1,0 +1,11 @@
+#alertContainer{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.detailContainer{
+    text-align: center;
+}
+.card{
+    
+}
