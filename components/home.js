@@ -2,7 +2,7 @@ import "../styles/home.css";
 export default function Homepage() {
     return (
       
-      <main>
+      
       <div className="home">
         
         <h1>PiAlert</h1>
@@ -11,6 +11,6 @@ export default function Homepage() {
             record video once motion is detected. It uses an MongoDB to store data online.
         </h2>
         </div>
-      </main>
+      
     );
   }

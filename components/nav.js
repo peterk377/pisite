@@ -19,7 +19,7 @@ function ResponsiveAppBar() {
             <li>
         <a href="#" className="desktop-item">Account</a>
         <input type="checkbox" id="showDrop"></input>
-        <label for="showDrop" className="mobile-item">Dropdown Menu</label>
+        <label htmlFor="showDrop" className="mobile-item">Dropdown Menu</label>
         <ul className="drop-menu">
           <li><a href="./account">View Account</a></li>
           <li><a href="./login">Log In</a></li>
