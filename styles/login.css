@@ -1,0 +1,31 @@
+.card {
+    max-width: 300px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    max-width: 500px;
+    height: 500px;
+    padding: 0px;
+
+    margin: auto;
+    margin-top: 07%;
+    text-align: center;
+    position: relative;
+  
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0px;
+    background-color: #681B9A;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+  
+    color: white;
+  }
+  .textfield{
+    background: white;
+  }
+
+  .link{
+    color: white;
+    text-decoration: none;
+  }

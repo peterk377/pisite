@@ -22,8 +22,8 @@ function ResponsiveAppBar() {
         <label for="showDrop" class="mobile-item">Dropdown Menu</label>
         <ul class="drop-menu">
           <li><a href="./account">View Account</a></li>
-          <li><a href="#">Log In</a></li>
-          <li><a href="#">Log Out</a></li>
+          <li><a href="./login">Log In</a></li>
+          <li><a href="./register">Register</a></li>
         </ul>
       </li>
           </ul>

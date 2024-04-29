@@ -159,7 +159,7 @@ nav .wrapper{
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #681B9A;
+    background: c;
   }
   ::-webkit-scrollbar-thumb {
     background: #681B9A;
