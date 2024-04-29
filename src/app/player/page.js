@@ -12,8 +12,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
 export default function Page() {
   const [data, setData] = useState(null);
   const [base64Video, setBase64Video] = useState("");
@@ -80,7 +78,6 @@ export default function Page() {
       }}
     >
       <div>
-        <h1>{ArrowBackIosIcon}</h1>
         <h1 style={{ color: "white" }}>Video Player</h1>
         {data.map((alert, index) => (
           <div key={index} style={{ color: "white" }}>
