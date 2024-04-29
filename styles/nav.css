@@ -67,6 +67,7 @@ nav .wrapper{
   top: 70px;
   opacity: 1;
   visibility: visible;
+  z-index: 1;
 }
 .drop-menu li a{
   width: 100%;
@@ -159,7 +160,7 @@ nav .wrapper{
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: c;
+    background: #681B9A;
   }
   ::-webkit-scrollbar-thumb {
     background: #681B9A;

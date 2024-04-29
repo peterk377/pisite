@@ -1,7 +1,8 @@
 footer {
+  display: block;
     background-color: #681B9A;
     color: #fff;
-    text-align: center;
+    text-align: right;
     padding: 20px;
     position: fixed;
     left: 0;

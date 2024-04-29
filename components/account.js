@@ -19,6 +19,7 @@ import { createTheme } from '@mui/material/styles';
 import { green, purple } from '@mui/material/colors';
 
 import "../styles/account.css";
+import "../styles/loading.css";
 
 export default function Account() {
 
@@ -33,7 +34,18 @@ export default function Account() {
       });
   }, []);
 
-  if (!data) return <p>Loading</p>;
+  if (!data) return (
+    <>
+        <div className="typing-indicator">
+          <div class="typing-circle"></div>
+          <div class="typing-circle"></div>
+          <div class="typing-circle"></div>
+          <div class="typing-shadow"></div>
+          <div class="typing-shadow"></div>
+          <div class="typing-shadow"></div>
+        </div>
+      </>
+  )
 
   /*
   This function does the actual work
@@ -49,34 +61,6 @@ export default function Account() {
     }
     }
 
-
-  /*
-
-  When the button is clicked, this is the event that is fired.
-  The first thing we need to do is prevent the default refresh of the page.
-  */
-	const handleSubmit = (event) => {
-		
-		console.log("handling submit");
-
-
-    event.preventDefault();
-  
-		const data = new FormData(event.currentTarget);
-
-    let username = data.get('username')
-    let email = data.get('email')
-	  let password = data.get('password')
-    let tel = data.get('tel')
-	
-    console.log("Sent username:" + username)
-    console.log("Sent email:" + email)
-    console.log("Sent pass:" + password)
-    console.log("Sent tel:" + tel)
-
-    runDBCallAsync(`http://localhost:3000/api/register?username=${username}&email=${email}&password=${password}&tel=${tel}`)
-
-  }; // end handler
 
   const theme = createTheme({
     palette: {
