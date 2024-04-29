@@ -2,11 +2,12 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import Link from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
+import "../style/loading.css";
 
 export default function Page() {
   const [data, setData] = useState(null);
-  const [alerts, setAlerts] = useState(null);
+  const [alertID, setAlertID] = useState(null);
   var video = "";
 
   useEffect(() => {
@@ -17,7 +18,19 @@ export default function Page() {
       });
   }, []);
 
-  if (!data) return <p>Loading</p>;
+  if (!data)
+    return (
+      <>
+        <div class="typing-indicator">
+          <div class="typing-circle"></div>
+          <div class="typing-circle"></div>
+          <div class="typing-circle"></div>
+          <div class="typing-shadow"></div>
+          <div class="typing-shadow"></div>
+          <div class="typing-shadow"></div>
+        </div>
+      </>
+    );
 
   return (
     <div>
@@ -57,7 +70,9 @@ export default function Page() {
       </div>
       <div className="detailContainer">
         <div id="alertContainer">
-          <h1>Alerts</h1>
+          <a href="alert">
+            <h1>Alerts</h1>
+          </a>
           {data
             .slice(-5)
             .reverse()
@@ -66,12 +81,21 @@ export default function Page() {
                 (video = alert.video),
                 (
                   <div key={index}>
+                    {/* <BrowserRouter> */}
+                    {/* <Link
+                        to={{
+                          pathname: "/player",
+                          state: { ID: alert.alertID },
+                        }}
+                      > */}
                     <a href={"player?id=" + alert.alertID}>
                       AlertID: {alert.alertID}
                       &nbsp;&nbsp; Date: {alert.date}
                       <br />
                       <br />
                     </a>
+                    {/* </Link>
+                    </BrowserRouter> */}
                   </div>
                 )
               )
