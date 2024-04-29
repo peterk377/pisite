@@ -17,10 +17,10 @@ function ResponsiveAppBar() {
             <li><a href="./alerts">Alerts</a></li>
             <li><a href="./contact">Contact</a></li>
             <li>
-        <a href="#" class="desktop-item">Account</a>
+        <a href="#" className="desktop-item">Account</a>
         <input type="checkbox" id="showDrop"></input>
-        <label for="showDrop" class="mobile-item">Dropdown Menu</label>
-        <ul class="drop-menu">
+        <label for="showDrop" className="mobile-item">Dropdown Menu</label>
+        <ul className="drop-menu">
           <li><a href="./account">View Account</a></li>
           <li><a href="./login">Log In</a></li>
           <li><a href="./register">Register</a></li>
