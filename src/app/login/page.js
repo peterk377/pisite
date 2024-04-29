@@ -70,9 +70,6 @@ export default function Page() {
 
     runDBCallAsync(`api/login?username=${username}&password=${password}`);
 
-
-
-
   }; // end handler
 
 
@@ -80,15 +77,15 @@ export default function Page() {
   
   const theme = createTheme({
     palette: {
-     
+      primary: {
+        main: purple[500], 
+      },
       secondary: {
-        main: green[500],
+        main: purple[500],
       },
     },
   });
   
-
-
 
   
   return (
@@ -101,6 +98,8 @@ export default function Page() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+
+          
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -121,6 +120,7 @@ export default function Page() {
             autoFocus
           />
           <TextField
+            
             margin="normal"
             required
             fullWidth

@@ -114,6 +114,8 @@ export default function Page() {
                 >
                   Delete
                 </Button>
+
+                {/* DELETE ALERT */}
                 <React.Fragment>
                   <Dialog
                     open={open}
@@ -136,6 +138,15 @@ export default function Page() {
                     </DialogActions>
                   </Dialog>
                 </React.Fragment>
+                {/* DELETE BUTTON */}
+                <Button>
+                  onClick=
+                  {() => {
+                    handleDelete();
+                    handleClickClose();
+                  }}
+                  Delete
+                </Button>
               </Stack>
             </div>
           </div>

@@ -76,9 +76,11 @@ export default function Page() {
   
   const theme = createTheme({
     palette: {
-     
+      primary: {
+        main: purple[500],
+      },
       secondary: {
-        main: green[500],
+        main: purple[500],
       },
     },
   });
