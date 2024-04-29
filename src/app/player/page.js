@@ -4,11 +4,28 @@ import ReactPlayer from "react-player";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import "../style/loading.css";
+import Alert from "@mui/material/Alert";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Page() {
   const [data, setData] = useState(null);
   const [base64Video, setBase64Video] = useState("");
   const [id, setId] = useState("");
+
+  // POPUP HANDLE
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+    window.location.href = "userLanding";
+  };
 
   useEffect(() => {
     const queryParameters = new URLSearchParams(window.location.search);
@@ -90,8 +107,44 @@ export default function Page() {
                 <Button
                   variant="contained"
                   color="error"
-                  onClick={handleDelete}
+                  onClick={() => {
+                    handleDelete();
+                    handleClickOpen();
+                  }}
                 >
+                  Delete
+                </Button>
+
+                {/* DELETE ALERT */}
+                <React.Fragment>
+                  <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">
+                      {"DELETE ALERT"}
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        The Video has been deleted from the Database.
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose} autoFocus>
+                        Close
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </React.Fragment>
+                {/* DELETE BUTTON */}
+                <Button>
+                  onClick=
+                  {() => {
+                    handleDelete();
+                    handleClickClose();
+                  }}
                   Delete
                 </Button>
               </Stack>
@@ -112,4 +165,15 @@ function decodeBase64(base64String) {
     console.error("An error occurred:", error);
     return null;
   }
+}
+
+function AlertPopup({ message, onClose }) {
+  return (
+    <div className="alert-popup">
+      <div className="alert-popup-content">
+        <p>{message}</p>
+        <button onClick={onClose}>Close</button>
+      </div>
+    </div>
+  );
 }
