@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-import "../style/loading.css";
+import "../../../styles/loading.css";
 
 export default function Page() {
   const [data, setData] = useState(null);

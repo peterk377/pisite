@@ -22,5 +22,5 @@ export async function GET(req, res) {
 
   // console.log('found documents =>', findResult);
 
-  return Response.json(findResult);
+  return Response.json({ data: " deleted successfully" });
 }

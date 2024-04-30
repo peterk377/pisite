@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import "../style/loading.css";
+import "../../../styles/loading.css";
+
 import Alert from "@mui/material/Alert";
 
 import Dialog from "@mui/material/Dialog";
@@ -51,8 +52,13 @@ export default function Page() {
     link.click();
     document.body.removeChild(link);
   };
-  const handleDelete = () => {
+  const handleDelete = (deleteID) => {
     console.log("DELETED");
+    fetch("api/deleteAlertbyID?id=" + id)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   if (!data)
@@ -104,6 +110,8 @@ export default function Page() {
                 >
                   Download
                 </Button>
+
+                {/* DELETE BUTTON */}
                 <Button
                   variant="contained"
                   color="error"
@@ -138,15 +146,6 @@ export default function Page() {
                     </DialogActions>
                   </Dialog>
                 </React.Fragment>
-                {/* DELETE BUTTON */}
-                <Button>
-                  onClick=
-                  {() => {
-                    handleDelete();
-                    handleClickClose();
-                  }}
-                  Delete
-                </Button>
               </Stack>
             </div>
           </div>

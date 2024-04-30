@@ -10,7 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-import "../style/loading.css";
+import "../../../styles/loading.css";
 
 export default function Page() {
   const [data, setData] = useState(null);
