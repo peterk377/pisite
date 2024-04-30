@@ -12,6 +12,8 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 
 import "../../../styles/loading.css";
 import "../../../styles/userSideNav.css";
+import "../../../styles/page.css";
+import "../../../styles/footer.css";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -21,6 +23,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 // import nav bar
 import ResponsiveAppBar from "../../../components/nav";
+import Footer from "../../../components/footer";
+
 import { useCookies } from "react-cookie";
 
 export default function Page() {
@@ -146,6 +150,7 @@ export default function Page() {
           {/* alertDiv */}
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

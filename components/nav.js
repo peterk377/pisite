@@ -3,6 +3,8 @@ import * as React from "react";
 import "../styles/nav.css";
 import cookies from "js-cookie";
 
+const cookieAuth = cookies.get("auth");
+
 function handleLogout() {
   // set Cookies to none
   cookies.remove("username");
@@ -33,7 +35,27 @@ function ResponsiveAppBar() {
               <li>
                 <a href="./contact">Contact</a>
               </li>
-              <li>
+              {cookieAuth === "true" ? (
+                <>
+                  <li>
+                    <a href="./account">View Account</a>
+                  </li>
+                  <li onClick={handleLogout}>
+                    <a href="./">Logout</a>
+                  </li>
+                </>
+              ) : (
+                // ELSE
+                <>
+                  <li>
+                    <a href="./login">Log In</a>
+                  </li>
+                  <li>
+                    <a href="./register">Register</a>
+                  </li>
+                </>
+              )}
+              {/* <li>
                 <a href="#" className="desktop-item">
                   Account
                 </a>
@@ -41,22 +63,31 @@ function ResponsiveAppBar() {
                 <label htmlFor="showDrop" className="mobile-item">
                   Dropdown Menu
                 </label>
-                <ul className="drop-menu">
-                  <li>
-                    <a href="./account">View Account</a>
-                  </li>
-                  {/* checking for logged in  */}
-                  <li onClick={handleLogout}>
-                    <a href="./">Logout</a>
-                  </li>
-                  <li>
-                    <a href="./login">Log In</a>
-                  </li>
-                  <li>
-                    <a href="./register">Register</a>
-                  </li>
-                </ul>
-              </li>
+                <ul className="drop-menu"> */}
+              {/* {cookieAuth === "true" ? (
+                    <>
+                      <li>
+                        <a href="./account">View Account</a>
+                      </li>
+                      <li onClick={handleLogout}>
+                        <a href="./">Logout</a>
+                      </li>
+                    </>
+                  ) : (
+                    // ELSE
+                    <>
+                      <li>
+                        <a href="./login">Log In</a>
+                      </li>
+                      <li>
+                        <a href="./register">Register</a>
+                      </li>
+                    </>
+                  )} */}
+
+              {/* checking for logged in  */}
+              {/* </ul>
+              </li> */}
             </ul>
             <label htmlFor="menu-btn" className="btn menu-btn">
               <i className="fas fa-bars"></i>
