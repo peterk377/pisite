@@ -142,7 +142,7 @@ export default function Account() {
                   (
                     <div key={index} style={{ fontSize: "larger" }}>
                       <p style={{ fontSize: "larger" }}>
-                        UserID: {decodeBase64(user.userID)}
+                        UserID: {user.userID}
                       </p>
                       <p style={{ fontSize: "larger" }}>
                         Username: {decodeBase64(user.username)}
