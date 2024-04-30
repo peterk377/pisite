@@ -1,7 +1,25 @@
-.contact{
-    margin: auto;
-    margin-top: 10%;
-    text-align: center;
-    position: relative;
+.home {
+  position: relative;
+  height: 100vh;
+  text-align: center;
 }
 
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../src/images/piAlert1.jpg");
+  background-repeat: no-repeat;
+  background-size: 70em;
+  background-position: center;
+  opacity: 0.3;
+  margin-top: -10%;
+}
+.contact {
+  margin: auto;
+  margin-top: 10%;
+  text-align: center;
+  position: relative;
+}

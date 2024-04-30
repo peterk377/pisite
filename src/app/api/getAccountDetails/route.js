@@ -1,19 +1,32 @@
-export async function GET(req, res){
-    console.log("in the api page")
+import { cookies } from "next/headers";
 
-    const { MongoClient } = require("mongodb");
-    const url = process.env.DATABASE_URL;
-    const client = new MongoClient(url);
+export async function GET(req, res) {
+  const cookieUsername = cookies().get("username");
+  console.log("in the getAccountDetails route");
+  console.log("username:", cookieUsername);
 
-    const dbName = 'pialert';
+  const { MongoClient } = require("mongodb");
+  const url = process.env.DATABASE_URL;
+  const client = new MongoClient(url);
 
-    await client.connect();
-    console.log("connected succesfully");
-    const db = client.db(dbName);
-    const collection = db.collection("user");
+  const dbName = "pialert";
 
-    const user = await collection.find({"username":"pete1801"}).toArray();
+  await client.connect();
+  console.log("connected succesfully");
+  const db = client.db(dbName);
+  const collection = db.collection("user");
 
+  const user = await collection
+    .find({ username: cookieUsername.value })
+    .toArray();
 
-    return Response.json(user);
+  console.log(user);
+
+  user.forEach((getUser) => {
+    console.log("username:", getUser.username);
+    console.log("email:", getUser.email);
+    console.log("password", getUser.password);
+  });
+
+  return Response.json(user);
 }

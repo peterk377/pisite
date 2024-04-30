@@ -4,6 +4,7 @@ import ReactPlayer from "react-player";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import "../../../styles/loading.css";
+import "../../../styles/player.css";
 
 import Alert from "@mui/material/Alert";
 
@@ -13,6 +14,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import ResponsiveAppBar from "../../../components/nav";
+import Footer from "../../../components/footer";
+
 export default function Page() {
   const [data, setData] = useState(null);
   const [base64Video, setBase64Video] = useState("");
@@ -20,6 +24,9 @@ export default function Page() {
 
   // POPUP HANDLE
   const [open, setOpen] = React.useState(false);
+  function returnToPrevPage() {
+    window.history.back();
+  }
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -64,29 +71,29 @@ export default function Page() {
   if (!data)
     return (
       <div className="typing-indicator">
-        <div class="typing-circle"></div>
-        <div class="typing-circle"></div>
-        <div class="typing-circle"></div>
-        <div class="typing-shadow"></div>
-        <div class="typing-shadow"></div>
-        <div class="typing-shadow"></div>
+        <div className="typing-circle"></div>
+        <div className="typing-circle"></div>
+        <div className="typing-circle"></div>
+        <div className="typing-shadow"></div>
+        <div className="typing-shadow"></div>
+        <div className="typing-shadow"></div>
       </div>
     );
 
   return (
-    <div
-      style={{
-        background: "black",
-        // height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div>
-        <h1 style={{ color: "white" }}>Video Player</h1>
+    <div>
+      <ResponsiveAppBar />
+      <Button
+        variant="contained"
+        onClick={returnToPrevPage}
+        style={{ color: "white" }}
+      >
+        Back
+      </Button>
+      <div className="Container">
+        <h1 style={{ color: "Black" }}>Video Player</h1>
         {data.map((alert, index) => (
-          <div key={index} style={{ color: "white" }}>
+          <div key={index} style={{ color: "Black" }}>
             <h2>AlertID: {alert.alertID}</h2>
             <h4>Date: {alert.date}</h4>
             <ReactPlayer
@@ -95,8 +102,7 @@ export default function Page() {
               height={500}
               controls={true}
             />
-            <h3>Video Details:</h3>
-            <p>Image: {alert.image}</p>
+            <br></br>
             <div>
               <Stack direction="row" spacing={2}>
                 <Button
@@ -151,6 +157,7 @@ export default function Page() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
