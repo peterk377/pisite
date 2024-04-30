@@ -27,15 +27,14 @@ export async function GET(req, res) {
   console.log('Connected successfully to server');
   const db = client.db(dbName);
   const collection = db.collection('user'); // collection name
-  const findResult = await collection.insertOne({"username": username, "password":
+  const currUsers = await collection.find({}).toArray();
+  let x = 1;
+  currUsers.forEach(user => {x+=1});
+  let userID = "u" + x.toString().padStart(5, 0)
+  const findResult = await collection.insertOne({"userID":userID, "username": username, "password":
   password, "email": email, "whatsapp": tel});
   let valid=true;
-  //==========================================================
-   
   
-    // database call goes here
-  
-    // at the end of the process we need to send something back.
     return Response.json({ "data":"valid" })
   }
   
