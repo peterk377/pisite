@@ -11,13 +11,35 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
 import "../../../styles/loading.css";
+import "../../../styles/userSideNav.css";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
+// import nav bar
+import ResponsiveAppBar from "../../../components/nav";
+import { useCookies } from "react-cookie";
 
 export default function Page() {
   const [data, setData] = useState(null);
-  const [alertID, setAlertID] = useState(null);
-  var video = "";
+  const [cookieStatus, setCookieStatus] = useState(null);
+  const [usernames, setUsernames] = useState(null);
+  const [namecookies] = useCookies(["username"]);
+
+  function handleRedirect() {
+    window.location.href = "./login";
+  }
 
   useEffect(() => {
+    fetch("api/checkAuth")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Cookie Status: " + data.status);
+        setCookieStatus(data.status);
+      });
     fetch("api/getAlerts")
       .then((res) => res.json())
       .then((data) => {
@@ -25,16 +47,45 @@ export default function Page() {
       });
   }, []);
 
+  if (cookieStatus === "false")
+    return (
+      <>
+        {/* LOGIN ALERT */}
+        <React.Fragment>
+          <Dialog
+            open={open}
+            onClose={handleRedirect}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"LOGIN REQUIRED"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                ATTENTION: You must be logged in to view this page.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleRedirect} autoFocus>
+                Login
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </React.Fragment>
+      </>
+    );
+
   if (!data)
     return (
       <>
         <div className="typing-indicator">
-          <div class="typing-circle"></div>
-          <div class="typing-circle"></div>
-          <div class="typing-circle"></div>
-          <div class="typing-shadow"></div>
-          <div class="typing-shadow"></div>
-          <div class="typing-shadow"></div>
+          <div className="typing-circle"></div>
+          <div className="typing-circle"></div>
+          <div className="typing-circle"></div>
+          <div className="typing-shadow"></div>
+          <div className="typing-shadow"></div>
+          <div className="typing-shadow"></div>
         </div>
       </>
     );
@@ -43,116 +94,58 @@ export default function Page() {
     // NAV BAR
     <div>
       <div className="nav">
-        <ul>
-          <li>
-            <a href="../">Home</a>
-          </li>
-          <li>
-            <a href="../alerts">Alerts</a>
-          </li>
-          <li>
-            <a href="../recordings">Recordings</a>
-          </li>
-          <li>
-            <a href="../contact">Contact</a>
-          </li>
-          <li>
-            <a href="../account">Account</a>
-          </li>
-        </ul>
+        <ResponsiveAppBar></ResponsiveAppBar>
       </div>
       {/* END OF NAV BAR */}
-      <p>This page is the user landing page will contain list of alerts </p>
-      <p>
-        That will be click able When clicked it will bring to another page that
-        contains actual video and images With button to Download and Delete
-      </p>
-      <div className="userNav">
-        <ul>
-          <li>Profile</li>
-          {/* Config camera and live steam if possible */}
-          <li>Alerts</li>
-          <li>Recordings</li>
-          <li>Camera</li>
-          <li>logout</li>
-        </ul>
-      </div>
+
       <div className="detailContainer">
         {/* The Alert list */}
-        <h1>Alerts</h1>
+        <h1>Welcome, {decodeBase64(namecookies.username)}</h1>
+        <h1> Latest Alerts</h1>
         <div id="alertContainer" style={{ display: "flex", flexWrap: "wrap" }}>
           <a href="alerts"></a>
           {data
             .slice(-5)
             .reverse()
-            .map(
-              (alert, index) => (
-                (video = alert.video),
-                (
-                  <div key={index} style={{ margin: "10px" }}>
-                    <Card sx={{ maxWidth: 345 }}>
-                      <a
-                        href={"player?id=" + alert.alertID}
-                        style={{ textDecoration: "none" }}
-                      >
-                        <CardActionArea>
-                          <CardMedia
-                            component="video"
-                            width="600"
-                            height="140"
-                            src={`data:video/mp4;base64,${decodeBase64(
-                              alert.video
-                            )}`}
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              AlertID: {alert.alertID}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Date: {alert.date}
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                      </a>
-                      <CardActions>
-                        <a href={"player?id=" + alert.alertID}>
-                          <Button size="small" color="primary">
-                            View
-                          </Button>
-                        </a>
-                      </CardActions>
-                    </Card>
-                  </div>
-                )
-              )
-            )}
+            .map((alert, index) => (
+              <div key={index} style={{ margin: "10px" }}>
+                <Card sx={{ maxWidth: 345 }}>
+                  <a
+                    href={"player?id=" + alert.alertID}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        component="video"
+                        width="600"
+                        height="140"
+                        src={`data:video/mp4;base64,${decodeBase64(
+                          alert.video
+                        )}`}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          AlertID: {alert.alertID}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          Date: {alert.date}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </a>
+                  <CardActions>
+                    <a href={"player?id=" + alert.alertID}>
+                      <Button size="small" color="primary">
+                        View
+                      </Button>
+                    </a>
+                  </CardActions>
+                </Card>
+              </div>
+            ))}
           {/* alertDiv */}
         </div>
-        {/* <div id="recordingContainer">
-          <h3>Recordings</h3>
-          <p>
-            This will list all the recording. Will be last 3 or 5 recordings.
-          </p>
-          <ul>
-            <li>RecordingID: </li>
-            <li>Date: </li>
-            <li>Video: </li>
-            <li>Image: </li>
-          </ul>
-        </div> */}
-        {/* <div id="loginLog">
-          <h3>Login Log</h3>
-          <ul>
-            <li>Keep a log when user login</li>
-          </ul>
-        </div> */}
-        {/* DetailContainer Div */}
       </div>
-      {/* User Nav Div */}
     </div>
   );
 }
@@ -163,7 +156,6 @@ function decodeBase64(base64String) {
     // Decode the Base64 string
     const decodedData = atob(base64String);
 
-    console.log("Decoded data:", decodedData);
     return decodedData;
   } catch (error) {
     console.error("An error occurred:", error);

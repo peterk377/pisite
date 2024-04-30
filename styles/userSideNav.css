@@ -1,0 +1,23 @@
+.userNav {
+  margin-top: 7.5;
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #7f0897;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+li {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: aliceblue;
+  display: block;
+}
+.detailContainer {
+  margin-left: 160px;
+  padding: 0px 10px;
+}
