@@ -30,12 +30,12 @@ export default function Alerts() {
     return (
       <>
         <div className="typing-indicator">
-          <div class="typing-circle"></div>
-          <div class="typing-circle"></div>
-          <div class="typing-circle"></div>
-          <div class="typing-shadow"></div>
-          <div class="typing-shadow"></div>
-          <div class="typing-shadow"></div>
+          <div className="typing-circle"></div>
+          <div className="typing-circle"></div>
+          <div className="typing-circle"></div>
+          <div className="typing-shadow"></div>
+          <div className="typing-shadow"></div>
+          <div className="typing-shadow"></div>
         </div>
       </>
     );
@@ -43,18 +43,20 @@ export default function Alerts() {
   return (
     // NAV BAR
     <div>
-      
       <div className="detailContainer">
         {/* The Alert list */}
         <h1>Alerts</h1>
         <div id="alertContainer">
           <a href="alerts"></a>
-          {data.slice().reverse().map(
+          {data
+            .slice()
+            .reverse()
+            .map(
               (alert, index) => (
                 (video = alert.video),
                 (
                   <div key={index} style={{ margin: "10px" }}>
-                    <Card className="card" >
+                    <Card className="card">
                       <a
                         href={"player?id=" + alert.alertID}
                         style={{ textDecoration: "none" }}
@@ -127,7 +129,6 @@ function decodeBase64(base64String) {
     // Decode the Base64 string
     const decodedData = atob(base64String);
 
-    console.log("Decoded data:", decodedData);
     return decodedData;
   } catch (error) {
     console.error("An error occurred:", error);
