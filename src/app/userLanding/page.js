@@ -30,8 +30,8 @@ import { useCookies } from "react-cookie";
 export default function Page() {
   const [data, setData] = useState(null);
   const [cookieStatus, setCookieStatus] = useState(null);
-  const [usernames, setUsernames] = useState(null);
   const [namecookies] = useCookies(["username"]);
+  const [uIDCookies] = useCookies(["userID"]);
 
   function handleRedirect() {
     window.location.href = "./login";
@@ -104,8 +104,8 @@ export default function Page() {
 
       <div className="detailContainer">
         {/* The Alert list */}
-        <h1>Welcome, {decodeBase64(namecookies.username)}</h1>
-        <h1> Latest Alerts</h1>
+        <h1 id="greeting">Welcome, {decodeBase64(namecookies.username)}</h1>
+        <h1 id="title"> Latest Alerts</h1>
         <div id="alertContainer" style={{ display: "flex", flexWrap: "wrap" }}>
           <a href="alerts"></a>
           {data
@@ -113,7 +113,12 @@ export default function Page() {
             .reverse()
             .map((alert, index) => (
               <div key={index} style={{ margin: "10px" }}>
-                <Card sx={{ maxWidth: 345 }}>
+                <Card
+                  sx={{
+                    maxWidth: 345,
+                    boxShadow: "10px 4px 8px 0px rgba(0, 0, 0, 0.5)",
+                  }}
+                >
                   <a
                     href={"player?id=" + alert.alertID}
                     style={{ textDecoration: "none" }}

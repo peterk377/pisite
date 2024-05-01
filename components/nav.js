@@ -38,7 +38,7 @@ function ResponsiveAppBar() {
               {cookieAuth === "true" ? (
                 <>
                   <li>
-                    <a href="./account">View Account</a>
+                    <a href="./account">Account</a>
                   </li>
                   <li onClick={handleLogout}>
                     <a href="./">Logout</a>

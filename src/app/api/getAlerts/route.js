@@ -11,7 +11,7 @@ const db = client.db(dbName);
 const collection = db.collection("alerts"); //add collection name here
 
 export async function GET(req, res) {
-  console.log("in api page");
+  console.log("in getAlerts api page");
 
   const findResult = await collection.find({}).toArray();
   // console.log('found documents =>', findResult);

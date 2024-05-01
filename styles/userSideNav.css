@@ -1,23 +1,13 @@
-.userNav {
-  margin-top: 7.5;
-  height: 100%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #7f0897;
-  overflow-x: hidden;
-  padding-top: 20px;
+#alertContainer {
+  border: 1px black;
+  border-radius: 20px;
+  background-color: rgb(220, 198, 241);
+  margin: 0 7% 0 7%;
+  padding: 10px;
 }
-li {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 15px;
-  color: aliceblue;
-  display: block;
+.detailContainer #greeting {
+  text-align: center;
 }
-.detailContainer {
-  margin-left: 160px;
-  padding: 0px 10px;
+.detailContainer #title {
+  padding-left: 5%;
 }

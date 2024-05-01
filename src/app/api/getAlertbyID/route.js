@@ -1,7 +1,9 @@
+import { cookies } from "next/headers";
+
 const fs = require("fs");
 
 export async function GET(req, res) {
-  console.log("fecthing alert by id");
+  console.log("fecthing alert by userid");
 
   const { searchParams } = new URL(req.url);
   const newid = searchParams.get("id");
@@ -18,7 +20,7 @@ export async function GET(req, res) {
   const db = client.db(dbName);
   const collection = db.collection("alerts"); //add collection name here
 
-  const findResult = await collection.find({ alertID: newid }).toArray();
+  const findResult = await collection.find({ userID: newid }).toArray();
 
   if (findResult.length > 0) {
     //check for correct email
@@ -27,8 +29,6 @@ export async function GET(req, res) {
       console.log("alertID:", doc.alertID);
       console.log("date:", doc.date);
     });
-    // console.log('found documents =>', findResult);
-
     return Response.json(findResult);
   }
 }
