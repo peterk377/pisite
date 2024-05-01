@@ -22,5 +22,5 @@ export async function GET(req, res) {
 
   const findResult = await collection.find({ userID: newid }).toArray();
 
-  return Response.json(findResul);
+  return Response.json(findResult);
 }
