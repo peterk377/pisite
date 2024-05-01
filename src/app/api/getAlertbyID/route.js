@@ -18,19 +18,9 @@ export async function GET(req, res) {
   await client.connect();
   console.log("connected succesfully");
   const db = client.db(dbName);
-  const collection = db.collection("user_has_alerts"); //add collection name here
+  const collection = db.collection("alerts"); //add collection name here
 
   const findResult = await collection.find({ userID: newid }).toArray();
 
-  if (findResult.length > 0) {
-    //check for correct email
-
-    findResult.forEach((doc) => {
-      console.log("alertID:", doc.alertID);
-      console.log("userID:", doc.userID);
-    });
-    // console.log('found documents =>', findResult);
-
-    return Response.json("findResult");
-  }
+  return Response.json(findResul);
 }
