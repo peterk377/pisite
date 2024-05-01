@@ -22,5 +22,13 @@ export async function GET(req, res) {
 
   const findResult = await collection.find({ userID: newid }).toArray();
 
-  return Response.json(findResult);
+  if (findResult.length > 0) {
+    //check for correct email
+
+    findResult.forEach((doc) => {
+      console.log("alertID:", doc.alertID);
+      console.log("date:", doc.date);
+    });
+    return Response.json(findResult);
+  }
 }
