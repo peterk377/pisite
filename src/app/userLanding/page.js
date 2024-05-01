@@ -30,8 +30,6 @@ import { useCookies } from "react-cookie";
 export default function Page() {
   const [data, setData] = useState(null);
   const [cookieStatus, setCookieStatus] = useState(null);
-  const [uIDfromDB, setUIDfromDB] = useState(null);
-  const [usernames, setUsernames] = useState(null);
   const [namecookies] = useCookies(["username"]);
   const [uIDCookies] = useCookies(["userID"]);
 
@@ -46,11 +44,6 @@ export default function Page() {
         console.log("Cookie Status: " + data.status);
         setCookieStatus(data.status);
       });
-    // fetch("api/getAlertbyUserID")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setUIDfromDB(data);
-    //   });
     fetch("api/getAlerts")
       .then((res) => res.json())
       .then((data) => {
