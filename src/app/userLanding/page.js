@@ -46,11 +46,11 @@ export default function Page() {
         console.log("Cookie Status: " + data.status);
         setCookieStatus(data.status);
       });
-    fetch("api/getAlertbyUserID")
-      .then((res) => res.json())
-      .then((data) => {
-        setUIDfromDB(data);
-      });
+    // fetch("api/getAlertbyUserID")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setUIDfromDB(data);
+    //   });
     fetch("api/getAlerts")
       .then((res) => res.json())
       .then((data) => {
