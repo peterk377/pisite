@@ -38,10 +38,12 @@ export async function GET(req, res) {
     findResult.forEach((doc) => {
       console.log("username:", doc.username);
       console.log("password:", doc.password);
+      console.log("UID:", doc.userID);
       //Save Cookie
       console.log("Saving username and auth status");
       cookies().set("auth", "true");
       cookies().set("username", doc.username);
+      cookies().set("userID", doc.userID);
     });
 
     return Response.json({ data: "valid" });

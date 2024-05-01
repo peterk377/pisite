@@ -14,6 +14,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { ThemeProvider } from "@mui/material/styles";
 
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
 import { createTheme } from "@mui/material/styles";
 import { green, purple } from "@mui/material/colors";
 
@@ -33,6 +39,52 @@ export default function Register() {
       console.log("not registered ");
     }
   }
+  const validateForm = (event) => {
+    let errorMessage = "";
+    const data = new FormData(event.currentTarget);
+
+    //get the Email from input
+    let email = data.get("email");
+    let pass = data.get("pass");
+    let dob = data.get("dob");
+    let phone = data.get("phone");
+
+    //pull in the validator
+    var validator = require("email-validator");
+
+    //run the validator
+    let emailCheck = validator.validate(email);
+
+    //print the status
+    console.log("email status: " + emailCheck);
+
+    if (emailCheck == false) {
+      return (errorMessage += " Incorrect email");
+    }
+    if (password.length == 0) {
+      return (errorMessage += " No password entered");
+    }
+    // if (dob.length == 0 && dob.length < 5) {
+    //   return (errorMessage += " Date of birth did not add properly");
+    // }
+    // if (phone.length < 9) {
+    //   return (errorMessage += " Phone number did not correct");
+    // }
+    return errorMessage;
+  };
+
+  //first variable
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  //Second Variable
+  const [errorHolder, setErrorHolder] = React.useState(false);
 
   /*
 
@@ -46,21 +98,28 @@ export default function Register() {
 
     const data = new FormData(event.currentTarget);
 
-    let username = data.get("username");
-    let email = data.get("email");
-    let password = data.get("password");
-    let tel = data.get("tel");
+    let errorMessage = validateForm(event);
+    setErrorHolder(errorMessage);
 
-    console.log("Sent username:" + username);
-    console.log("Sent email:" + email);
-    console.log("Sent pass:" + password);
-    console.log("Sent tel:" + tel);
+    if (errorMessage.length > 0) {
+      setOpen(true);
+    } else {
+      let username = data.get("username");
+      let email = data.get("email");
+      let password = data.get("password");
+      let tel = data.get("tel");
 
-    runDBCallAsync(
-      `http://localhost:3000/api/register?username=${username}&email=${email}&password=${password}&tel=${tel}`
-    );
+      console.log("Sent username:" + username);
+      console.log("Sent email:" + email);
+      console.log("Sent pass:" + password);
+      console.log("Sent tel:" + tel);
 
-    window.location.href = "/registered";
+      runDBCallAsync(
+        `http://localhost:3000/api/register?username=${username}&email=${email}&password=${password}&tel=${tel}`
+      );
+
+      window.location.href = "/registered";
+    }
   }; // end handler
 
   const theme = createTheme({
@@ -75,84 +134,107 @@ export default function Register() {
   });
 
   return (
-    <div className="card">
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography component="h1" variant="h2">
-              Register
-            </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
+    <div className="register">
+      <div className="background-image"></div>
+      <div className="card">
+        <ThemeProvider theme={theme}>
+          <React.Fragment>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
             >
-              <TextField
-                className="textfield"
-                margin="normal"
-                required
-                fullWidth
-                name="username"
-                label="Username"
-                type="username"
-                id="username"
-                autoComplete="username"
-              />
-              <TextField
-                className="textfield"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="Email Address"
-                autoFocus
-              />
-              <TextField
-                className="textfield"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="Insert your password"
-              />
-              <TextField
-                className="textfield"
-                margin="normal"
-                required
-                fullWidth
-                name="tel"
-                label="Whatsapp number"
-                type="tel"
-                id="tel"
-                autoComplete="+353 12 345 6789"
-              />
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+              <DialogTitle id="alert-dialog-title">{"Error"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  {errorHolder}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </React.Fragment>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <Box
+              sx={{
+                marginTop: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography component="h1" variant="h2">
                 Register
-              </Button>
+              </Typography>
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate
+                sx={{ mt: 1 }}
+              >
+                <TextField
+                  className="textfield"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="username"
+                  label="Username"
+                  type="username"
+                  id="username"
+                  autoComplete="username"
+                />
+                <TextField
+                  className="textfield"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="Email Address"
+                  autoFocus
+                />
+                <TextField
+                  className="textfield"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="Insert your password"
+                />
+                <TextField
+                  className="textfield"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="tel"
+                  label="Whatsapp number"
+                  type="tel"
+                  id="tel"
+                  autoComplete="+353 12 345 6789"
+                />
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Register
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        </Container>
-      </ThemeProvider>
+          </Container>
+        </ThemeProvider>
+      </div>
     </div>
   );
 }

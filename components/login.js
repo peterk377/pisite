@@ -1,5 +1,7 @@
 "use client";
 import * as React from "react";
+import { useEffect, useState } from "react";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,6 +20,7 @@ import { createTheme } from "@mui/material/styles";
 import { green, purple } from "@mui/material/colors";
 
 import "../styles/login.css";
+import { useCookies } from "react-cookie";
 
 export default function Login() {
   /*
@@ -33,10 +36,9 @@ export default function Login() {
       // Redirects to a different page
       window.location.href = "/userLanding";
     } else {
-      console.log("not valid  ");
+      console.log("not valid ");
     }
   }
-
   /*
 
   When the button is clicked, this is the event that is fired.
@@ -70,70 +72,73 @@ export default function Login() {
   });
 
   return (
-    <div className="card">
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography component="h1" variant="h2">
-              Sign in
-            </Typography>
+    <div className="loginPage">
+      <div className="background"></div>
+      <div className="card">
+        <ThemeProvider theme={theme}>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
             <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
+              sx={{
+                marginTop: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              <TextField
-                className="textfield"
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                autoFocus
-              />
-              <TextField
-                className="textfield"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+              <Typography component="h1" variant="h2">
+                Sign in
+              </Typography>
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate
+                sx={{ mt: 1 }}
               >
-                Sign In
-              </Button>
+                <TextField
+                  className="textfield"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                  autoFocus
+                />
+                <TextField
+                  className="textfield"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
 
-              <Grid container>
-                <Grid item>
-                  <Link className="link" href="../register" variant="body2">
-                    {"Don't have an account? Press here to sign up!"}
-                  </Link>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign In
+                </Button>
+
+                <Grid container>
+                  <Grid item>
+                    <Link className="link" href="../register" variant="body2">
+                      {"Don't have an account? Press here to sign up!"}
+                    </Link>
+                  </Grid>
                 </Grid>
-              </Grid>
+              </Box>
             </Box>
-          </Box>
-        </Container>
-      </ThemeProvider>
+          </Container>
+        </ThemeProvider>
+      </div>
     </div>
   );
 }

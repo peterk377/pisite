@@ -1,11 +1,11 @@
 footer {
   display: block;
-    background-color: #681B9A;
-    color: #fff;
-    text-align: right;
-    padding: 20px;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
+  background-color: #681b9a;
+  color: #fff;
+  text-align: right;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

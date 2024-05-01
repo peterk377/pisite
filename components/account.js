@@ -126,13 +126,16 @@ export default function Account() {
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <Typography component="h1" variant="h2">
+            <Typography
+              component="h1"
+              variant="h2"
+              sx={{ marginTop: -20, marginBottom: "20px" }}
+            >
               Account Details
             </Typography>
             <Box component="form" noValidate sx={{ mt: 1 }}>

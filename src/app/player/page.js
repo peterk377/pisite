@@ -83,29 +83,34 @@ export default function Page() {
   return (
     <div>
       <ResponsiveAppBar />
-      <Button
-        variant="contained"
-        onClick={returnToPrevPage}
-        style={{ color: "white" }}
-      >
-        Back
-      </Button>
+
       <div className="Container">
+        <Button
+          id="backButton"
+          variant="contained"
+          onClick={returnToPrevPage}
+          style={{ color: "white" }}
+        >
+          Back
+        </Button>
         <h1 style={{ color: "Black" }}>Video Player</h1>
         {data.map((alert, index) => (
           <div key={index} style={{ color: "Black" }}>
             <h2>AlertID: {alert.alertID}</h2>
             <h4>Date: {alert.date}</h4>
-            <ReactPlayer
-              url={`data:video/mp4;base64,${decodeBase64(alert.video)}`} // Call decodeBase64 function here
-              width={750}
-              height={500}
-              controls={true}
-            />
+            <div id="videoPlayer">
+              <ReactPlayer
+                url={`data:video/mp4;base64,${decodeBase64(alert.video)}`} // Call decodeBase64 function here
+                width={750}
+                height={500}
+                controls={true}
+              />
+            </div>
             <br></br>
             <div>
               <Stack direction="row" spacing={2}>
                 <Button
+                  id="downloadButton"
                   variant="contained"
                   onClick={() =>
                     downloadVideo(
@@ -119,6 +124,7 @@ export default function Page() {
 
                 {/* DELETE BUTTON */}
                 <Button
+                  id="deleteButton"
                   variant="contained"
                   color="error"
                   onClick={() => {
