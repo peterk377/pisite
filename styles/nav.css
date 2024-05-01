@@ -9,7 +9,7 @@ nav {
   z-index: 99;
   width: 100%;
   background: #681b9a;
-  border-bottom: 200px;
+  border-bottom: 0px;
 }
 nav .wrapper {
   position: relative;
