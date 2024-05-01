@@ -19,7 +19,8 @@ export default function Alerts() {
   var video = "";
 
   useEffect(() => {
-    fetch("api/getAlerts")
+    
+fetch("api/getAlerts")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
