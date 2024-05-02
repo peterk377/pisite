@@ -1,6 +1,6 @@
 //Alerts
 "use client";
-import * as React from "react";
+
 import { useEffect, useState } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import ReactPlayer from "react-player";
@@ -9,21 +9,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-
 import "../../../styles/loading.css";
 import "../../../styles/userSideNav.css";
 import "../../../styles/page.css";
 import "../../../styles/footer.css";
-
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-
-// import nav bar
 import ResponsiveAppBar from "../../../components/nav";
 import Footer from "../../../components/footer";
+import Loadingbar from "../../../components/loadingbar";
+import LoginReq from "../../../components/loginreq";
 
 import { useCookies } from "react-cookie";
 
@@ -53,52 +46,19 @@ export default function Page() {
 
   if (cookieStatus === "false")
     return (
-      <>
-        {/* LOGIN ALERT */}
-        <React.Fragment>
-          <Dialog
-            open={open}
-            onClose={handleRedirect}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              {"LOGIN REQUIRED"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                ATTENTION: You must be logged in to view this page.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleRedirect} autoFocus>
-                Login
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </React.Fragment>
-      </>
+      <LoginReq/>
     );
 
   if (!data)
     return (
-      <>
-        <div className="typing-indicator">
-          <div className="typing-circle"></div>
-          <div className="typing-circle"></div>
-          <div className="typing-circle"></div>
-          <div className="typing-shadow"></div>
-          <div className="typing-shadow"></div>
-          <div className="typing-shadow"></div>
-        </div>
-      </>
+      <Loadingbar/>
     );
 
   return (
     // NAV BAR
     <div>
       <div className="nav">
-        <ResponsiveAppBar></ResponsiveAppBar>
+        <ResponsiveAppBar/>
       </div>
       {/* END OF NAV BAR */}
 
@@ -155,7 +115,7 @@ export default function Page() {
           {/* alertDiv */}
         </div>
       </div>
-      <Footer></Footer>
+      <Footer/>
     </div>
   );
 }

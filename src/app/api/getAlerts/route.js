@@ -16,7 +16,7 @@ export async function GET(req, res) {
   console.log("in getAlerts api page");
 
   const userID = cookies(req, res).get("userID").value;
-  console.log(userID.value);
+  console.log(userID.valueOf);
   const findResult = await collection.find({"userID":userID}).toArray();
   // console.log('found documents =>', findResult);
 

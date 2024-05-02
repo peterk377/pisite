@@ -6,11 +6,11 @@ import "../../../styles/page.css";
 
 export default function AccountPage() {
     return (
-      <body>
+      <>
       <ResponsiveAppBar></ResponsiveAppBar>
       <Account></Account>
       <Footer></Footer>
-      </body>
+      </>
     );
   }
 

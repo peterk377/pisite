@@ -1,17 +1,15 @@
 //Alerts
 "use client";
-import * as React from "react";
+
 import { useEffect, useState } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
-import ReactPlayer from "react-player";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-
-import "../styles/loading.css";
+import "./loadingbar"
 import "../styles/alerts.css";
+import Loadingbar from "./loadingbar";
 
 export default function Alerts() {
   const [data, setData] = useState(null);
@@ -29,16 +27,7 @@ fetch("api/getAlerts")
 
   if (!data)
     return (
-      <>
-        <div className="typing-indicator">
-          <div className="typing-circle"></div>
-          <div className="typing-circle"></div>
-          <div className="typing-circle"></div>
-          <div className="typing-shadow"></div>
-          <div className="typing-shadow"></div>
-          <div className="typing-shadow"></div>
-        </div>
-      </>
+      <Loadingbar/>
     );
 
   return (

@@ -1,9 +1,10 @@
 //Alerts
 "use client";
-import * as React from "react";
+
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-import "../../../styles/loading.css";
+import Loadingbar from "../../../components/loadingbar";
+
 
 export default function Page() {
   const [data, setData] = useState(null);
@@ -19,16 +20,7 @@ export default function Page() {
 
   if (!data)
     return (
-      <>
-        <div class="typing-indicator">
-          <div class="typing-circle"></div>
-          <div class="typing-circle"></div>
-          <div class="typing-circle"></div>
-          <div class="typing-shadow"></div>
-          <div class="typing-shadow"></div>
-          <div class="typing-shadow"></div>
-        </div>
-      </>
+      <Loadingbar/>
     );
 
   return (
