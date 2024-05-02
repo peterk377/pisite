@@ -21,7 +21,7 @@ export default function Page() {
   const [id, setId] = useState("");
 
   // POPUP HANDLE
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   function returnToPrevPage() {
     window.history.back();
   }
@@ -127,7 +127,7 @@ export default function Page() {
                 </Button>
 
                 {/* DELETE ALERT */}
-                <React.Fragment>
+                <>
                   <Dialog
                     open={open}
                     onClose={handleClose}
@@ -148,7 +148,7 @@ export default function Page() {
                       </Button>
                     </DialogActions>
                   </Dialog>
-                </React.Fragment>
+                </>
               </Stack>
             </div>
           </div>
