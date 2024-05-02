@@ -20,7 +20,7 @@ export async function GET(req, res) {
   const db = client.db(dbName);
   const collection = db.collection("alerts"); //add collection name here
 
-  const findResult = await collection.find({ userID: newid }).toArray();
+  const findResult = await collection.find({ alertID: newid }).toArray();
 
   if (findResult.length > 0) {
     //check for correct email
