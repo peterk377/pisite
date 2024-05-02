@@ -3,19 +3,17 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import "../../../styles/loading.css";
-import "../../../styles/player.css";
-
-import Alert from "@mui/material/Alert";
-
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
 import ResponsiveAppBar from "../../../components/nav";
 import Footer from "../../../components/footer";
+import Loadingbar from "../../../components/loadingbar";
+
+import "../../../styles/loading.css";
+import "../../../styles/player.css";
 
 export default function Page() {
   const [data, setData] = useState(null);
@@ -70,14 +68,7 @@ export default function Page() {
 
   if (!data)
     return (
-      <div className="typing-indicator">
-        <div className="typing-circle"></div>
-        <div className="typing-circle"></div>
-        <div className="typing-circle"></div>
-        <div className="typing-shadow"></div>
-        <div className="typing-shadow"></div>
-        <div className="typing-shadow"></div>
-      </div>
+      <Loadingbar/>
     );
 
   return (

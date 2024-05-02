@@ -1,21 +1,13 @@
 "use client";
-import * as React from "react";
+
 import ResponsiveAppBar from "../../../components/nav";
 import Alerts from "../../../components/alerts";
 import Footer from "../../../components/footer";
-
-import "../../../styles/page.css";
-
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
+import LoginReq from "../../../components/loginreq";
 
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-
-import { Button } from "@mui/material";
+import "../../../styles/page.css";
 
 export default function AlertsPage() {
   const [namecookies] = useCookies(["username"]);
@@ -36,38 +28,14 @@ export default function AlertsPage() {
 
   if (cookieStatus === "false")
     return (
-      <>
-        {/* LOGIN ALERT */}
-        <React.Fragment>
-          <Dialog
-            open={open}
-            onClose={handleRedirect}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              {"LOGIN REQUIRED"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                ATTENTION: You must be logged in to view this page.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleRedirect} autoFocus>
-                Login
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </React.Fragment>
-      </>
+      <LoginReq/>
     );
 
   return (
     <body>
-      <ResponsiveAppBar></ResponsiveAppBar>
-      <Alerts></Alerts>
-      <Footer></Footer>
+      <ResponsiveAppBar/>
+      <Alerts/>
+      <Footer/>
     </body>
   );
 }

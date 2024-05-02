@@ -6,11 +6,11 @@ import "../../../styles/page.css";
 
 export default function ContactPage() {
     return (
-      <body>
+      <>
       <ResponsiveAppBar></ResponsiveAppBar>
       <Registered></Registered>
       <Footer></Footer>
-      </body>
+      </>
     );
   }
 

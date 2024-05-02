@@ -7,9 +7,9 @@ import "../../../styles/page.css";
 export default function ContactPage() {
     return (
       <body>
-      <ResponsiveAppBar></ResponsiveAppBar>
-      <Contact></Contact>
-      <Footer></Footer>
+        <ResponsiveAppBar/>
+        <Contact/>
+        <Footer/>
       </body>
     );
   }
