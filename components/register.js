@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-
+import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { ThemeProvider } from "@mui/material/styles";
@@ -69,7 +69,7 @@ export default function Register() {
   };
 
   //first variable
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -79,7 +79,7 @@ export default function Register() {
   };
 
   //Second Variable
-  const [errorHolder, setErrorHolder] = React.useState(false);
+  const [errorHolder, setErrorHolder] = useState(false);
 
   /*
 
@@ -133,7 +133,7 @@ export default function Register() {
       <div className="background-image"></div>
       <div className="card">
         <ThemeProvider theme={theme}>
-          <React.Fragment>
+          <>
             <Dialog
               open={open}
               onClose={handleClose}
@@ -152,7 +152,7 @@ export default function Register() {
                 </Button>
               </DialogActions>
             </Dialog>
-          </React.Fragment>
+          </>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
