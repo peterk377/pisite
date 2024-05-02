@@ -32,10 +32,10 @@ export default function AlertsPage() {
     );
 
   return (
-    <body>
+    <div>
       <ResponsiveAppBar/>
       <Alerts/>
       <Footer/>
-    </body>
+    </div>
   );
 }
